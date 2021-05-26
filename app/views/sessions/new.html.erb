@@ -1,0 +1,16 @@
+<h1>Sign In</h1>
+
+<%= flash[:message] if flash[:message] %>
+
+<%= form_for :user do |f| %>
+
+  <br>
+  <%= f.label :username %>
+  <%= f.text_field :username, required:true %><br>
+  <br>
+  <%= f.label :password %>
+  <%= f.password_field :password, required:true %><br>
+  <br>
+  <%= f.submit "Sign In" %>
+
+<% end %>
