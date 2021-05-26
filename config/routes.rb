@@ -3,6 +3,12 @@ Rails.application.routes.draw do
 
   get '/signup' => 'users#new'
   post '/signup' => 'users#create'
+
+  get '/signin' => 'sessions#new'
+  post '/signin' => 'sessions#create'
+
+  delete '/signout' => 'sessions#destroy'
+
   # resources :collections
   resources :upvotes
   resources :submissions
