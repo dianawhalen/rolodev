@@ -1,6 +1,10 @@
 class SubmissionsController < ApplicationController
   before_action :redirect_if_not_signed_in
 
+  def index
+    @submissions = Submission.all
+  end
+
   def new
     @submission = Submission.new
   end
@@ -12,6 +16,10 @@ class SubmissionsController < ApplicationController
     else
       render :new
     end
+  end
+
+  def show
+    @submission = Submission.find(params[:id])
   end
 
   private
