@@ -9,9 +9,15 @@ Rails.application.routes.draw do
 
   delete '/signout' => 'sessions#destroy'
 
-  # resources :collections
+
+  resources :submissions do
+    resources :upvotes
+  end
   resources :upvotes
-  resources :submissions
-  resources :users
+  resources :users do
+    resources :submissions, shallow: true
+  end
+  # resources :collections
+
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

@@ -1,0 +1,11 @@
+<% if @submission %>
+  <h1>Upvotes for <%= @submission.title%></h1>
+<% else %>
+  <h1>All Upvotes</h1>
+<% end %>
+
+<ul>
+<% @upvotes.each do |upv|%>
+  <li><%= upv.user.username%> says "<%= upv.click%>" about this submission: <strong><%= link_to upv.submission.title, submission_path(upv.submission_id) %></strong></li>
+<% end %>
+</ul>

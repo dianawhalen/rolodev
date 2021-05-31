@@ -1,0 +1,7 @@
+<h2><%= @upvote.click%> - <%= @upvote.user.username%></h2>
+
+<% if @upvote.user == current_user %>
+  <%= link_to "Edit Upvote", edit_upvote_path(@upvote)%>
+<% end %>
+
+<h4>Find the submission here: <%= link_to @upvote.submission.title, submission_path(@upvote.submission_id) %></h4>

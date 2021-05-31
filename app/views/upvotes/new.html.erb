@@ -1,0 +1,23 @@
+<% if @upvote.submission %>
+  <h1>New Upvote for <%= @upvote.submission.title%>!</h1>
+<% else %>
+  <h1>New Upvote!</h1>
+<% end %>
+
+<%= render partial: "layouts/errors", locals: {object: @upvote} %>
+
+<%= form_for([@upvote.submission, @upvote]) do |f|%>
+
+<% if !@upvote.submission %>
+  <%= f.label :submission %>
+  <%= f.collection_select :submission_id, Submission.all, :id, :title %>
+<% else %>
+  <%= f.hidden_field :submission_id %>
+<% end %>
+
+  <%= f.label :click %>
+  <%= f.text_field :click %>
+
+  <%= f.submit %>
+
+<% end %>
