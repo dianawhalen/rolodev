@@ -1,1 +1,8 @@
 <h1>Welcome!</h1>
+
+<%= link_to "Sign Up Here", signup_path %> |
+<%= link_to "Sign In Here", signin_path %><br>
+<br>
+<%= form_tag('/auth/github', method: 'post') do %>
+  <button type='submit'>Login with GitHub</button>
+<% end %>

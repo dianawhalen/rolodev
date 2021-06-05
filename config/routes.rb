@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+
+# match '/auth/:provider/callback', to: 'sessions#github', via: [:get, :post]
+
+match '/auth/:provider/callback', to: 'sessions#create', via: [:get, :post]
+
   root 'sessions#home'
 
   get '/signup' => 'users#new'
@@ -8,7 +13,6 @@ Rails.application.routes.draw do
   post '/signin' => 'sessions#create'
 
   delete '/signout' => 'sessions#destroy'
-
 
   resources :submissions do
     resources :upvotes
