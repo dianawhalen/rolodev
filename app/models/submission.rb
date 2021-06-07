@@ -5,4 +5,6 @@ class Submission < ApplicationRecord
 	has_many :users, through: :upvotes
 
   validates :title, :url, presence: true
+
+  scope :alpha, -> { order(:title) }
 end

@@ -2,11 +2,14 @@ class SubmissionsController < ApplicationController
   before_action :redirect_if_not_signed_in
 
   def index
+    # binding.pry
     if params[:user_id] && @user = User.find_by_id(params[:user_id])
-      @submissions = @user.submissions
+      # @submissions = @user.submissions
+      @submissions = @user.submissions.alpha
     else
       @error = "The user does not exist." if params[:user_id]
-      @submissions = Submission.all
+      # @submissions = Submission.all
+      @submissions = Submission.alpha
     end
   end
 
