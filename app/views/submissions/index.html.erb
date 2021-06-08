@@ -1,5 +1,5 @@
 <h1>All Submissions</h1>
 
 <% @submissions.each do |s| %>
-  <li><%= link_to s.title, submission_path(s) %> by <%= s.user.username %></li>
+  <li><%= link_to s.title, submission_path(s) %> by <%= s.user.username %> - <%= s.upvotes.size %></li>
 <% end %>

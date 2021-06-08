@@ -9,7 +9,8 @@ class SubmissionsController < ApplicationController
     else
       @error = "The user does not exist." if params[:user_id]
       # @submissions = Submission.all
-      @submissions = Submission.alpha
+      # @submissions = Submission.alpha
+      @submissions = Submission.most_upvotes
     end
   end
 
