@@ -10,7 +10,8 @@ class SubmissionsController < ApplicationController
       @error = "The user does not exist." if params[:user_id]
       # @submissions = Submission.all
       # @submissions = Submission.alpha
-      @submissions = Submission.most_upvotes
+      # @submissions = Submission.most_upvotes
+      @submissions = Submission.alpha.includes(:collection, :user)
     end
   end
 
@@ -20,6 +21,7 @@ class SubmissionsController < ApplicationController
     else
       @submission = Submission.new
     end
+    @submission.build_collection
   end
 
   def create
@@ -34,6 +36,15 @@ class SubmissionsController < ApplicationController
   def show
     @submission = Submission.find_by_id(params[:id])
     redirect_to submissions_path if !@submission
+  end
+
+  def edit
+  end
+
+  def update
+  end
+
+  def destroy
   end
 
   private

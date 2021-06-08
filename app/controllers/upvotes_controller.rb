@@ -45,6 +45,9 @@ class UpvotesController < ApplicationController
     end
   end
 
+  def destroy
+  end
+
   private
 
   def upvote_params

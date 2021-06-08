@@ -21,7 +21,7 @@ match '/auth/:provider/callback', to: 'sessions#create', via: [:get, :post]
   resources :users do
     resources :submissions, shallow: true
   end
-  # resources :collections
+  resources :collections
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
