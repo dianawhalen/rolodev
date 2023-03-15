@@ -3,3 +3,13 @@
 <% @submissions.each do |s| %>
   <li><%= link_to s.title, submission_path(s) %> by <%= s.user.username %> - <%= s.upvotes.size %></li>
 <% end %>
+
+<h1>Listing Submissions</h1>
+
+    <% @submissions.each do |submission| %>
+        <h2><%= link_to submission.name, submission %></h2>
+        <p><%= link_to 'Edit', edit_submission_path(submission) %></p>
+        <p><%= link_to 'Destroy', submission, method: :delete, data: { confirm: 'Are you sure?' } %></p>
+    <% end %>
+
+<br>

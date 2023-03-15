@@ -11,15 +11,5 @@
   <%= @submission.notes %>
 </p>
 
-<p><%= link_to 'Upvote this submission', new_submission_upvote_path(@submission)%></p>
-
-<% if !@submission.upvotes.empty? %>
-  <p><%= link_to 'See all upvotes', submission_upvotes_path(@submission)%></p>
-
-  <h4>Most Recent Upvotes:</h4>
-  <% @submission.upvotes.order(updated_at: :desc).limit(3).each do |upv|%>
-    <li>
-      <strong><%= upv.user.username%></strong> says "<%= link_to upv.click, submission_upvote_path(@submission, upv)%>"
-    </li>
-  <% end %>
-<% end %>
+<%= link_to 'Edit', edit_submission_path(@submission) %> |
+<%= link_to 'Back', submissions_path %>

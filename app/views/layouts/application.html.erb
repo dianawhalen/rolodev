@@ -11,6 +11,8 @@
 
   <body>
 
+    <%= yield %>
+
     <div>
       <% if signed_in? %>
       <%= link_to "Add a Submission", new_submission_path %> |
@@ -29,6 +31,6 @@
       <% end %>
       <%= @error %>
     </div>
-    <%= yield %>
+
   </body>
 </html>

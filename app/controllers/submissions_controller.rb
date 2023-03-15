@@ -15,6 +15,10 @@ class SubmissionsController < ApplicationController
     end
   end
 
+  # def new
+  #   @submission = Submission.new
+  # end
+
   def new
     if params[:user_id] && @user = User.find_by_id(params[:user_id])
       @submission = @user.submissions.build
@@ -23,6 +27,15 @@ class SubmissionsController < ApplicationController
     end
     @submission.build_collection
   end
+
+  # def create
+  #   @submission = Submission.new(submission_params)
+  #   if @submission.save
+  #     redirect_to submissions_path
+  #   else
+  #     render :new
+  #   end
+  # end
 
   def create
     @submission = current_user.submissions.build(submission_params)
