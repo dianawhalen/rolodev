@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   match '/auth/:provider/callback', to: 'sessions#create', via: [:get, :post]
 
+  root 'sessions#home'
+
   get '/signup', to: 'users#new'
   post '/signup', to: 'users#create'
 
@@ -8,8 +10,6 @@ Rails.application.routes.draw do
   post '/signin', to: 'sessions#create'
 
   delete '/signout', to: 'sessions#destroy'
-
-  root 'sessions#home'
 
   resource :sessions, only: [:home, :new, :create, :destroy]
 
