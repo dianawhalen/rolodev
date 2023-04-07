@@ -1,0 +1,39 @@
+Rails.application.routes.draw do
+  get 'collections/index'
+  get 'collections/show'
+  get 'collections/new'
+  get 'collections/edit'
+  get 'collections/create'
+  get 'collections/update'
+  get 'collections/destroy'
+  get 'upvotes/index'
+  get 'upvotes/show'
+  get 'upvotes/new'
+  get 'upvotes/edit'
+  get 'upvotes/create'
+  get 'upvotes/update'
+  get 'upvotes/destroy'
+  get 'submissions/index'
+  get 'submissions/show'
+  get 'submissions/new'
+  get 'submissions/edit'
+  get 'submissions/create'
+  get 'submissions/update'
+  get 'submissions/destroy'
+  get 'users/index'
+  get 'users/show'
+  get 'users/new'
+  get 'users/edit'
+  get 'users/create'
+  get 'users/update'
+  get 'users/destroy'
+  get 'sessions/home'
+  get 'sessions/new'
+  get 'sessions/create'
+  get 'sessions/destroy'
+  resources :collections
+  resources :upvotes
+  resources :submissions
+  resources :users
+  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+end
