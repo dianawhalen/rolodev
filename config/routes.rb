@@ -11,7 +11,7 @@ Rails.application.routes.draw do
 
   root 'sessions#home'
 
-  resource :sessions, only: [:new, :create, :destroy]
+  resource :sessions, only: [:home, :new, :create, :destroy]
 
   resources :users, only: [:new, :create, :show, :edit, :update, :destroy] do
     resources :submissions, only: [:new, :create, :edit, :update, :destroy]
