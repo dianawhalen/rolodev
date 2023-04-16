@@ -1,6 +1,5 @@
 class ApplicationController < ActionController::Base
-
-  helper_method :current_user, :signed_in?
+  helper_method :current_user, :signed_in?, :redirect_if_not_signed_in, :set_user
 
   private
 
@@ -14,5 +13,10 @@ class ApplicationController < ActionController::Base
 
   def redirect_if_not_signed_in
     redirect_to '/' if !signed_in?
+  end
+
+  def set_user
+    @user = User.find(params[:id])
+    redirect_to '/' if !@user || @user != current_user
   end
 end
