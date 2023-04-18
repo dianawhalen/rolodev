@@ -8,21 +8,31 @@
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag 'users', media: 'all', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
+    <header>
+      <% if signed_in? %>
+        <%= link_to "New Submission", new_submission_path %>
+        <%= link_to "Sign Out", signout_path, method: "delete" %>
+      <% end %>
+    </header>
+
+    <nav>
+      <ul>
+        <li><%= link_to "Home", root_path %></li>
+        <% if signed_in? %>
+          <li><%= link_to "All Submissions", submissions_path %></li>
+        <% end %>
+      </ul>
+    </nav>
+
     <% flash.each do |key, value| %>
       <div class="flash-<%= key %>"><%= value %></div>
     <% end %>
 
     <%= yield %>
-
-    <div>
-      <% if signed_in? %>
-        <%= link_to "Sign Out", signout_path, method: "delete" %>
-      <% end %>
-    </div>
-
   </body>
 
 </html>

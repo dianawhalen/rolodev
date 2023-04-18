@@ -1,11 +1,15 @@
 <h1>Sessions#home</h1>
 <p>Find me in app/views/sessions/home.html.erb</p>
 
-<h1>Welcome!</h1>
+<% if signed_in? %>
+<h1>Welcome <%= link_to current_user.username, user_path(current_user) %>!</h1>
+<% else %>
+  <h1>Welcome!</h1>
 
-<%= link_to "Sign Up Here", signup_path %> |
-<%= link_to "Sign In Here", signin_path %><br>
-<br>
-<%= form_tag('/auth/github', method: 'post') do %>
-  <button type='submit'>Login with GitHub</button>
+  <%= link_to "Sign Up Here", signup_path %> |
+  <%= link_to "Sign In Here", signin_path %><br>
+  <br>
+  <%= form_tag('/auth/github', method: 'post') do %>
+    <button type='submit'>Login with GitHub</button>
+  <% end %>
 <% end %>

@@ -1,2 +1,29 @@
 <h1>Submissions#index</h1>
 <p>Find me in app/views/submissions/index.html.erb</p>
+
+<h1>All Submissions</h1>
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>URL</th>
+      <th>Notes</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @submissions.each do |submission| %>
+      <tr>
+        <td><%= link_to submission.title, submission_path(submission) %></td>
+        <td><%= link_to submission.url, submission.url %></td>
+        <td><%= submission.notes %></td>
+        <td>
+          <% if current_user && current_user == submission.user %>
+            <%= button_to "Edit", edit_submission_path(submission), class: 'edit-btn' %>
+            <%= button_to "Delete", submission_path(submission), method: :delete, data: { confirm: "Are you sure?" }, class: 'delete-btn' %>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

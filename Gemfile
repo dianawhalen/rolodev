@@ -27,6 +27,8 @@ gem 'omniauth'
 gem 'omniauth-rails_csrf_protection'
 gem 'omniauth-github'
 
+gem 'uri'
+
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 

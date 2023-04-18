@@ -1,2 +1,41 @@
 <h1>Submissions#new</h1>
 <p>Find me in app/views/submissions/new.html.erb</p>
+
+<div id="submission-form">
+  <h1>New Submission</h1>
+
+  <%= form_with model: @submission, url: submissions_path, local: true do |form| %>
+    <% if @submission.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@submission.errors.count, "error") %> prohibited this submission from being saved:</h2>
+
+        <ul>
+          <% @submission.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="field">
+      <%= form.label :title %>
+      <%= form.text_field :title, autofocus: true %>
+    </div>
+
+    <div class="field">
+      <%= form.label :url %>
+      <%= form.text_field :url %>
+    </div>
+
+    <div class="field">
+      <%= form.label :notes %>
+      <%= form.text_area :notes %>
+    </div>
+
+    <div class="actions">
+      <%= form.submit "Create Submission" %>
+    </div>
+  <% end %>
+
+  <%= link_to "Back", submissions_path %>
+</div>

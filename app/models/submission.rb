@@ -4,4 +4,6 @@ class Submission < ApplicationRecord
   has_many :upvoters, through: :upvotes, source: :user
   has_many :collection_submissions, dependent: :destroy
   has_many :collections, through: :collection_submissions
+
+  validates :url, format: { with: URI::DEFAULT_PARSER.make_regexp }
 end

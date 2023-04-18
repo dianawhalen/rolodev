@@ -1,2 +1,25 @@
 <h1>Submissions#edit</h1>
 <p>Find me in app/views/submissions/edit.html.erb</p>
+
+<h1>Edit Submission</h1>
+
+<%= form_for @submission do |f| %>
+  <div class="field">
+    <%= f.label :title %>
+    <%= f.text_field :title %>
+  </div>
+
+  <div class="field">
+    <%= f.label :url %>
+    <%= f.text_field :url %>
+  </div>
+
+  <div class="field">
+    <%= f.label :notes %>
+    <%= f.text_area :notes %>
+  </div>
+
+  <%= f.submit %>
+<% end %>
+
+<%= link_to "Cancel", submission_path(@submission) %>

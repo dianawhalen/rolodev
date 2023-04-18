@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
-  before_action :redirect_if_not_signed_in, only: [:show, :edit, :update, :destroy]
-  before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :redirect_if_not_signed_in, only: [:edit, :update, :destroy]
+  before_action :set_user, only: [:edit, :update, :destroy]
 
   def index
     redirect_if_not_signed_in
@@ -23,7 +23,6 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    redirect_to '/' if !@user
   end
 
   def edit

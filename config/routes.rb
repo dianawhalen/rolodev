@@ -14,11 +14,11 @@ Rails.application.routes.draw do
   resource :sessions, only: [:home, :new, :create, :destroy]
 
   resources :users, only: [:index, :new, :create, :show, :edit, :update, :destroy] do
-    resources :submissions, only: [:new, :create, :edit, :update, :destroy]
+    resources :submissions, only: [:index, :new, :create, :show, :edit, :update, :destroy]
     resources :collections, only: [:index, :new, :create, :edit, :update, :destroy]
   end
 
-  resources :submissions, only: [:index, :show] do
+  resources :submissions, only: [:index, :new, :create, :show, :edit, :update, :destroy] do
     resources :upvotes, only: [:create, :destroy]
   end
 

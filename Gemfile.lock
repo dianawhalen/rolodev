@@ -216,6 +216,7 @@ GEM
     turbolinks-source (5.2.0)
     tzinfo (1.2.10)
       thread_safe (~> 0.1)
+    uri (0.12.1)
     version_gem (1.1.1)
     web-console (4.2.0)
       actionview (>= 6.0.0)
@@ -260,6 +261,7 @@ DEPENDENCIES
   sqlite3 (~> 1.4)
   turbolinks (~> 5)
   tzinfo-data
+  uri
   web-console (>= 3.3.0)
   webdrivers
   webpacker (~> 4.0)
