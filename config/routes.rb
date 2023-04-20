@@ -18,8 +18,12 @@ Rails.application.routes.draw do
     resources :collections, only: [:index, :new, :create, :edit, :update, :destroy]
   end
 
-  resources :submissions, only: [:index, :new, :create, :show, :edit, :update, :destroy] do
-    resources :upvotes, only: [:create, :destroy]
+  # resources :submissions
+
+  resources :submissions do
+    post 'upvote', to: 'upvotes#create', as: 'upvote'
+    delete 'upvote', to: 'upvotes#destroy', as: 'remove_upvote'
+    resources :upvotes
   end
 
   resources :collections, only: [:show] do

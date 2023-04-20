@@ -1,10 +1,11 @@
 class SubmissionsController < ApplicationController
   def index
-    @submissions = Submission.all
+    @submissions = Submission.includes(:user).all
   end
 
   def show
     @submission = Submission.find(params[:id])
+    logger.debug "Submission object: #{@submission}"
   end
 
   def new

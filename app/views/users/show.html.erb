@@ -35,7 +35,7 @@
         <td><%= submission.notes %></td>
         <td>
           <% if current_user && current_user == submission.user %>
-            <%= button_to "Edit", edit_submission_path(submission), class: 'edit-btn' %>
+            <%= button_to "Edit", edit_submission_path(submission), method: :get, class: 'edit-btn' %>
             <%= button_to "Delete", submission_path(submission), method: :delete, data: { confirm: "Are you sure?" }, class: 'delete-btn' %>
           <% end %>
         </td>

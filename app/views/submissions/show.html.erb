@@ -4,9 +4,18 @@
 <h1><%= @submission.title %></h1>
 <p><%= link_to @submission.url, @submission.url %></p>
 <p><%= @submission.notes %></p>
+<p> Submitted by <%= link_to @submission.user.username, user_path(@submission.user) %></p>
+
+<% if current_user && current_user != @submission.user %>
+  <% if current_user.upvoted?(@submission) %>
+    <%= button_to "Upvoted", submission_remove_upvote_path(@submission), method: :delete, data: { confirm: "Are you sure you want to remove your upvote?" } %>
+  <% else %>
+    <%= button_to "Upvote", submission_upvote_path(@submission, submission_id: @submission.id), method: :post %>
+  <% end %>
+<% end %>
 
 <% if current_user && current_user == @submission.user %>
-  <%= button_to "Edit", edit_submission_path(@submission) %>
+  <%= button_to "Edit", edit_submission_path(@submission), method: :get %>
   <%= button_to "Delete", submission_path(@submission), method: :delete, data: { confirm: "Are you sure you want to delete this submission?" } %>
 <% end %>
 

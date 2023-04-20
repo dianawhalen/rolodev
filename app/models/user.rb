@@ -15,4 +15,12 @@ class User < ApplicationRecord
       user.password = SecureRandom.hex(10)
     end
   end
+
+  def upvoted?(submission)
+    upvoted_submissions.include?(submission)
+  end
+
+  def upvote_for(submission)
+    upvotes.find_by(submission: submission)
+  end
 end
