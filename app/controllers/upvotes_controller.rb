@@ -22,7 +22,12 @@ class UpvotesController < ApplicationController
     else
       flash[:alert] = "Unable to upvote submission. Please try again."
     end
-    redirect_to @submission
+
+    if request.referrer == submissions_url
+      redirect_to submissions_url
+    else
+      redirect_to @submission
+    end
   end
 
   def update
@@ -31,12 +36,18 @@ class UpvotesController < ApplicationController
   def destroy
     @submission = Submission.find(params[:submission_id])
     upvote = Upvote.find_by(user_id: current_user.id, submission_id: @submission.id)
+
     if upvote
       upvote.destroy
       flash[:notice] = "Upvote removed!"
     else
       flash[:alert] = "There was a problem removing your upvote. Please try again."
     end
-    redirect_to @submission
+
+    if request.referrer == submissions_url
+      redirect_to submissions_url
+    else
+      redirect_to @submission
+    end
   end
 end
