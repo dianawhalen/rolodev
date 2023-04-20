@@ -9,6 +9,7 @@
       <th>URL</th>
       <th>Notes</th>
       <th>Submitted by</th>
+      <th>Total Upvotes</th>
       <th>Actions</th>
     </tr>
   </thead>
@@ -19,6 +20,7 @@
         <td><%= link_to submission.url, submission.url %></td>
         <td><%= submission.notes %></td>
         <td><%= link_to submission.user.username, user_path(submission.user) %></td>
+        <td><%= submission.upvotes.count %></td>
         <td>
           <% if current_user && current_user == submission.user %>
             <%= button_to "Edit", edit_submission_path(submission), method: :get, class: 'edit-btn' %>
