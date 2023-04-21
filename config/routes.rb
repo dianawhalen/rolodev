@@ -15,10 +15,8 @@ Rails.application.routes.draw do
 
   resources :users, only: [:index, :new, :create, :show, :edit, :update, :destroy] do
     resources :submissions, only: [:index, :new, :create, :show, :edit, :update, :destroy]
-    resources :collections, only: [:index, :new, :create, :edit, :update, :destroy]
+    resources :collections, only: [:index, :new, :create, :show, :edit, :update, :destroy]
   end
-
-  # resources :submissions
 
   resources :submissions do
     post 'upvote', to: 'upvotes#create', as: 'upvote'
@@ -26,8 +24,9 @@ Rails.application.routes.draw do
     resources :upvotes
   end
 
-  resources :collections, only: [:show] do
+  resources :collections do
     resources :collection_submissions, only: [:create, :destroy]
   end
+
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

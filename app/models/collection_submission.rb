@@ -1,4 +1,4 @@
 class CollectionSubmission < ApplicationRecord
   belongs_to :collection
-  belongs_to :submission, dependent: :destroy
+  belongs_to :submission
 end

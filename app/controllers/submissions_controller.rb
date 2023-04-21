@@ -5,7 +5,7 @@ class SubmissionsController < ApplicationController
 
   def show
     @submission = Submission.find(params[:id])
-    logger.debug "Submission object: #{@submission}"
+    @upvote = current_user.upvotes.find_by(submission_id: @submission.id)
   end
 
   def new
@@ -21,7 +21,7 @@ class SubmissionsController < ApplicationController
     @submission = current_user.submissions.build(submission_params)
 
     if @submission.save
-      flash[:success] = "Submission created!"
+      flash[:notice] = "Submission created!"
       redirect_to @submission
     else
       flash[:alert] = "Invalid URL format. Please enter a valid URL."
@@ -42,7 +42,7 @@ class SubmissionsController < ApplicationController
     @submission = Submission.find(params[:id])
     if @submission.user == current_user
       if @submission.destroy
-        flash[:success] = "Submission deleted."
+        flash[:notice] = "Submission deleted."
       else
         flash[:alert] = "There was an error deleting the submission."
       end

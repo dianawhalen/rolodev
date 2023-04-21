@@ -15,6 +15,7 @@
     <header>
       <% if signed_in? %>
         <%= link_to "New Submission", new_submission_path %>
+        <%= link_to "New Collection", new_collection_path %>
         <%= link_to "Sign Out", signout_path, method: "delete" %>
       <% end %>
     </header>

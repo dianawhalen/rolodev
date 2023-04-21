@@ -1,2 +1,11 @@
 <h1>Collections#new</h1>
 <p>Find me in app/views/collections/new.html.erb</p>
+
+<%= form_with model: @collection, url: collections_path do |form| %>
+  <div>
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+
+  <%= form.submit "Create Collection" %>
+<% end %>

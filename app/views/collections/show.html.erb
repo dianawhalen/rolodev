@@ -1,2 +1,25 @@
 <h1>Collections#show</h1>
 <p>Find me in app/views/collections/show.html.erb</p>
+
+<h2><%= @collection.name %></h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>URL</th>
+      <th>User</th>
+      <th>Upvotes</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @submissions.each do |submission| %>
+      <tr>
+        <td><%= link_to submission.title, submission %></td>
+        <td><%= link_to submission.url, submission.url %></td>
+        <td><%= link_to submission.user.username, submission.user %></td>
+        <td><%= submission.upvotes.count %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
