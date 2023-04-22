@@ -11,4 +11,9 @@ class Submission < ApplicationRecord
   def upvoted_by?(user)
     upvoters.exists?(user.id)
   end
+
+  def collection_name=(name)
+    collection = Collection.find_or_create_by(name: name)
+    self.collection = collection
+  end
 end

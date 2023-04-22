@@ -1,4 +1,5 @@
 class CollectionsController < ApplicationController
+  before_action :set_collection, only: [:edit, :update, :destroy]
   def index
   end
 
@@ -31,9 +32,21 @@ class CollectionsController < ApplicationController
   def destroy
   end
 
+  def add_submission_to_collection
+    collection = Collection.find(params[:collection_id])
+    submission = Submission.find(params[:submission_id])
+    collection.submissions << submission
+
+    redirect_to submission_path(submission), flash[:notice] = "Submission added to collection"
+  end
+
   private
 
   def collection_params
     params.require(:collection).permit(:name)
+  end
+
+  def set_collection
+    @collection = Collection.find(params[:id])
   end
 end

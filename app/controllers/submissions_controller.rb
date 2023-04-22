@@ -1,4 +1,5 @@
 class SubmissionsController < ApplicationController
+  before_action :set_submission, only: [:edit, :update, :destroy]
   def index
     @submissions = Submission.includes(:user).all
   end
@@ -6,6 +7,7 @@ class SubmissionsController < ApplicationController
   def show
     @submission = Submission.find(params[:id])
     @upvote = current_user.upvotes.find_by(submission_id: @submission.id)
+    @collections = Collection.new
   end
 
   def new
@@ -52,9 +54,21 @@ class SubmissionsController < ApplicationController
     redirect_to submissions_path, data: { confirm: "Are you sure?" }
   end
 
+  def add_submission_to_collection
+    collection = Collection.find(params[:collection_id])
+    submission = Submission.find(params[:submission_id])
+    collection.submissions << submission
+
+    redirect_to submission_path(submission), flash[:notice] = "Submission added to collection"
+  end
+
   private
 
   def submission_params
-    params.require(:submission).permit(:title, :url, :notes)
+    params.require(:submission).permit(:title, :url, :notes, :collection_name, :collection_id)
+  end
+
+  def set_submission
+    @submission = Submission.find(params[:id])
   end
 end
