@@ -1,7 +1,14 @@
 <h1>Submissions#index</h1>
 <p>Find me in app/views/submissions/index.html.erb</p>
 
-<h1>All Submissions</h1>
+<% if @user == current_user %>
+  <h2>My Submissions</h2>
+<% elsif @user.present? %>
+  <h2><%= @user.username %>'s Submissions</h2>
+<% else %>
+  <h1>All Submissions</h1>
+<% end %>
+
 <table>
   <thead>
     <tr>

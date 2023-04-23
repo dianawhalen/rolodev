@@ -1,7 +1,24 @@
 class SubmissionsController < ApplicationController
   before_action :set_submission, only: [:edit, :update, :destroy]
+  # def index
+  #   @submissions = Submission.includes(:user).all
+  # end
+
+  # def index
+  #   if params[:user_id]
+  #     @submissions = current_user.submissions
+  #   else
+  #     @submissions = Submission.includes(:user).all
+  #   end
+  # end
+
   def index
-    @submissions = Submission.includes(:user).all
+    if params[:user_id].present?
+      @user = User.find(params[:user_id])
+      @submissions = @user.submissions
+    else
+      @submissions = Submission.includes(:user).all
+    end
   end
 
   def show

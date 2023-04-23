@@ -1,2 +1,15 @@
 <h1>Collections#edit</h1>
 <p>Find me in app/views/collections/edit.html.erb</p>
+
+<h2>Edit Collection</h2>
+
+<%= form_for @collection do |f| %>
+  <div class="field">
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+
+  <%= f.submit %>
+<% end %>
+
+<%= link_to "Cancel", collection_path(@collection) %>

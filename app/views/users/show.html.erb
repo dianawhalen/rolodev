@@ -9,12 +9,13 @@
   <p>Email: <%= @user.email %></p>
   <p>Password: ********</p>
   <%= button_to "Edit", edit_user_path(@user), class: 'edit-btn' %>
+
 <br>
+
   <h2>My Submissions</h2>
 <% else %>
   <h2><%= @user.username %>'s Submissions</h2>
 <% end %>
-
 
 <table>
   <thead>
@@ -37,6 +38,34 @@
           <% if current_user && current_user == submission.user %>
             <%= button_to "Edit", edit_submission_path(submission), method: :get, class: 'edit-btn' %>
             <%= button_to "Delete", submission_path(submission), method: :delete, data: { confirm: "Are you sure?" }, class: 'delete-btn' %>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<h2>My Collections</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+    <% if current_user == @user %>
+      <th>Actions</th>
+    <% end %>
+    </tr>
+  </thead>
+  <tbody>
+    <% @user.collections.each do |collection| %>
+      <tr>
+        <td><%= link_to collection.name, collection_path(collection) %></td>
+        <td>
+          <% if current_user && current_user == collection.user %>
+            <%= button_to "Edit", edit_collection_path(collection), method: :get, class: 'edit-btn' %>
+            <%= button_to "Delete", collection_path(collection), method: :delete, data: { confirm: "Are you sure?" }, class: 'delete-btn' %>
           <% end %>
         </td>
       </tr>
