@@ -1,6 +1,12 @@
 class CollectionsController < ApplicationController
   before_action :set_collection, only: [:edit, :update, :destroy]
   def index
+    if params[:user_id].present?
+      @user = User.find(params[:user_id])
+      @collections = @user.collections
+    else
+      @collections = current_user.collections
+    end
   end
 
   def new
