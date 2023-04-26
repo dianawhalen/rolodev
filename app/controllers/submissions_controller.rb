@@ -21,10 +21,18 @@ class SubmissionsController < ApplicationController
     end
   end
 
+  # def show
+  #   @submission = Submission.find(params[:id])
+  #   @upvote = current_user.upvotes.find_by(submission_id: @submission.id)
+  #   @collections = current_user.collections
+  #   # @collections = Collection.new
+  # end
+
   def show
     @submission = Submission.find(params[:id])
-    @upvote = current_user.upvotes.find_by(submission_id: @submission.id)
-    @collections = Collection.new
+    @upvote = current_user.upvotes.find_by(submission: @submission)
+    @collection_submission = CollectionSubmission.new
+    @collections = current_user.collections
   end
 
   def new
@@ -71,15 +79,27 @@ class SubmissionsController < ApplicationController
     redirect_to submissions_path, data: { confirm: "Are you sure?" }
   end
 
-  def add_submission_to_collection
-    collection = Collection.find(params[:collection_id])
-    submission = Submission.find(params[:submission_id])
+  # def add_to_collection
+  #   collection = Collection.find(params[:collection_submission][:collection_id])
+  #   submission = Submission.find(params[:id])
+  #   collection.submissions << submission
+  #
+  #   redirect_to submission_path(submission), notice: "Submission added to collection"
+  # end
+
+  def add_to_collection
+    collection = Collection.find(collection_submission_params[:collection_id])
+    submission = Submission.find(params[:id])
     collection.submissions << submission
 
-    redirect_to submission_path(submission), flash[:notice] = "Submission added to collection"
+    redirect_to submission_path(submission), notice: "Submission added to collection"
   end
 
   private
+
+  def collection_submission_params
+    params.require(:collection_submission).permit(:collection_id)
+  end
 
   def submission_params
     params.require(:submission).permit(:title, :url, :notes, :collection_name, :collection_id)
