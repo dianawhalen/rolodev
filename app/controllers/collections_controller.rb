@@ -9,14 +9,19 @@ class CollectionsController < ApplicationController
   #   end
   # end
 
+  # def index
+  #   if params[:user_id].present?
+  #     @user = User.find(params[:user_id])
+  #     @collections = @user.collections
+  #   else
+  #     @collections = Collection.includes(:user).all
+  #   end
+  # end
+
   def index
-    if params[:user_id].present?
-      @user = User.find(params[:user_id])
-      @collections = @user.collections
-    else
-      @collections = Collection.includes(:user).all
-    end
+    @collections = current_user.collections
   end
+
 
   # def index
   #   if params[:my_collections]
@@ -25,6 +30,8 @@ class CollectionsController < ApplicationController
   #     @collections = Collection.all
   #   end
   # end
+
+
 
   def new
     @collection = Collection.new
