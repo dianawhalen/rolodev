@@ -1,13 +1,30 @@
 class CollectionsController < ApplicationController
   before_action :set_collection, only: [:edit, :update, :destroy]
+  # def index
+  #   if params[:user_id].present?
+  #     @user = User.find(params[:user_id])
+  #     @collections = @user.collections
+  #   else
+  #     @collections = current_user.collections
+  #   end
+  # end
+
   def index
     if params[:user_id].present?
       @user = User.find(params[:user_id])
       @collections = @user.collections
     else
-      @collections = current_user.collections
+      @collections = Collection.includes(:user).all
     end
   end
+
+  # def index
+  #   if params[:my_collections]
+  #     @collections = current_user.collections
+  #   else
+  #     @collections = Collection.all
+  #   end
+  # end
 
   def new
     @collection = Collection.new
