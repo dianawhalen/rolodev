@@ -13,12 +13,15 @@
     </tr>
   </thead>
   <tbody>
-    <% @submissions.each do |submission| %>
+    <% @collection.submissions.each do |submission| %>
       <tr>
         <td><%= link_to submission.title, submission %></td>
         <td><%= link_to submission.url, submission.url %></td>
         <td><%= link_to submission.user.username, submission.user %></td>
         <td><%= submission.upvotes.count %></td>
+        <td>
+          <%= button_to "Remove from Collection", remove_from_collection_collection_submission_path(collection_id: @collection, id: submission.collection_submissions.find_by(collection: @collection).id), method: :delete, data: { confirm: "Are you sure you want to remove this submission from the collection?" } %>
+        </td>
       </tr>
     <% end %>
   </tbody>

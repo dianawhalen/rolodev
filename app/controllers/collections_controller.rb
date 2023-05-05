@@ -1,5 +1,6 @@
 class CollectionsController < ApplicationController
   before_action :set_collection, only: [:edit, :update, :destroy]
+  before_action :set_collection_submission, only: [:destroy]
   before_action :require_owner, only: [:show, :edit, :update, :destroy]
 
   def index
@@ -53,14 +54,6 @@ class CollectionsController < ApplicationController
     redirect_to collections_path, data: { confirm: "Are you sure?" }
   end
 
-  def add_submission_to_collection
-    collection = Collection.find(params[:collection_id])
-    submission = Submission.find(params[:submission_id])
-    collection.submissions << submission
-
-    redirect_to submission_path(submission), flash[:notice] = "Submission added to collection"
-  end
-
   private
 
   def collection_params
@@ -69,6 +62,10 @@ class CollectionsController < ApplicationController
 
   def set_collection
     @collection = Collection.find(params[:id])
+  end
+
+  def set_collection_submission
+    @collection_submission = @collection.collection_submissions.find(params[:id])
   end
 
   def require_owner

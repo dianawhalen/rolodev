@@ -27,9 +27,9 @@ Rails.application.routes.draw do
 
   post 'submissions/:id/add_to_collection', to: 'submissions#add_to_collection', as: 'add_to_collection_submission'
 
+  delete 'collections/:collection_id/remove_from_collection/:id', to: 'collection_submissions#destroy', as: 'remove_from_collection_collection_submission'
+
   resources :collections do
-    # get '/my_collections', to: 'collections#index', as: 'my_collections'
-    # post 'collection', to: 'collections#add_submission_to_collection', as: 'add_submission_to_collection'
     resources :collection_submissions
   end
 

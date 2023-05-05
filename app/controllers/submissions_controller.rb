@@ -1,16 +1,5 @@
 class SubmissionsController < ApplicationController
   before_action :set_submission, only: [:edit, :update, :destroy]
-  # def index
-  #   @submissions = Submission.includes(:user).all
-  # end
-
-  # def index
-  #   if params[:user_id]
-  #     @submissions = current_user.submissions
-  #   else
-  #     @submissions = Submission.includes(:user).all
-  #   end
-  # end
 
   def index
     if params[:user_id].present?
@@ -20,13 +9,6 @@ class SubmissionsController < ApplicationController
       @submissions = Submission.includes(:user).all
     end
   end
-
-  # def show
-  #   @submission = Submission.find(params[:id])
-  #   @upvote = current_user.upvotes.find_by(submission_id: @submission.id)
-  #   @collections = current_user.collections
-  #   # @collections = Collection.new
-  # end
 
   def show
     @submission = Submission.find(params[:id])
@@ -79,20 +61,18 @@ class SubmissionsController < ApplicationController
     redirect_to submissions_path, data: { confirm: "Are you sure?" }
   end
 
-  # def add_to_collection
-  #   collection = Collection.find(params[:collection_submission][:collection_id])
-  #   submission = Submission.find(params[:id])
-  #   collection.submissions << submission
-  #
-  #   redirect_to submission_path(submission), notice: "Submission added to collection"
-  # end
-
   def add_to_collection
-    collection = Collection.find(collection_submission_params[:collection_id])
+    collection = Collection.find(params[:collection_submission][:collection_id])
     submission = Submission.find(params[:id])
-    collection.submissions << submission
+    collection_submission = collection.collection_submissions.build(submission: submission)
 
-    redirect_to submission_path(submission), notice: "Submission added to collection"
+    if collection_submission.save
+      flash[:notice] = "Submission added to collection"
+      redirect_to submission_path(submission)
+    else
+      flash[:alert] = "This submission has already been added to the collection."
+      redirect_to submission_path(submission)
+    end
   end
 
   private
