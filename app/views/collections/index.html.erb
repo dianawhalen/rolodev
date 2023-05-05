@@ -27,4 +27,5 @@
   </table>
 <% else %>
   <p>You do not have access to view this user's collections.</p>
+  <%= link_to 'Back', '#', onclick: 'window.history.back()', class: 'btn btn-secondary' %>
 <% end %>
