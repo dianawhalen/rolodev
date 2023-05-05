@@ -74,7 +74,7 @@ class CollectionsController < ApplicationController
   def require_owner
     @collection = Collection.find_by(id: params[:id])
     unless @collection && current_user == @collection.user
-      flash[:error] = "You do not have permission to access this collection"
+      flash[:alert] = "You do not have permission to access this collection."
       redirect_back(fallback_location: collections_path)
     end
   end
