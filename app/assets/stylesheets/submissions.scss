@@ -2,10 +2,24 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
 
+.flash-notice {
+  padding: 10px;
+  background-color: #DFF0D8;
+  color: #3C763D;
+}
+
+.flash-alert {
+  padding: 10px;
+  background-color: #F8D7DA;
+  color: #721C24;
+}
+
 .edit-btn,
 .delete-btn {
   float: left;
   margin-right: 5px;
+  border: none;
+  border-radius: 30px;
 }
 
 .edit-btn {
@@ -33,6 +47,38 @@
 .edit-btn:active,
 .delete-btn:active {
   transform: translateY(1px);
+}
+
+.upvoted-btn {
+  font-size: 16px;
+  margin-right: 10px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 30px; // Rounded edges
+  background-color: #bb238c; // Background color (use any color you prefer)
+  color: white; // Text color (use any color you prefer)
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: #0056B3; // Background color when hovering (use any color you prefer)
+  }
+}
+
+.upvote-btn {
+  font-size: 16px;
+  margin-right: 10px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 30px; // Rounded edges
+  background-color: #4f494d; // Background color (use any color you prefer)
+  color: white; // Text color (use any color you prefer)
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: #0056B3; // Background color when hovering (use any color you prefer)
+  }
 }
 
 table {

@@ -30,15 +30,16 @@
         <td><%= submission.upvotes.count %></td>
         <td>
           <% if current_user && current_user == submission.user %>
-            <%= button_to "Edit", edit_submission_path(submission), method: :get, class: 'edit-btn' %>
-            <%= button_to "Delete", submission_path(submission), method: :delete, data: { confirm: "Are you sure?" }, class: 'delete-btn' %>
+            <div class="buttons-container">
+              <%= button_to "Edit", edit_submission_path(submission), method: :get, class: 'edit-btn' %>
+              <%= button_to "Delete", submission_path(submission), method: :delete, data: { confirm: "Are you sure?" }, class: 'delete-btn' %>
+            </div>
           <% end %>
-
           <% if current_user && current_user != submission.user %>
             <% if current_user.upvoted?(submission) %>
-              <%= button_to "Upvoted", submission_remove_upvote_path(submission), method: :delete, data: { confirm: "Are you sure you want to remove your upvote?" } %>
+              <%= button_to "Upvoted", submission_remove_upvote_path(submission), method: :delete, data: { confirm: "Are you sure you want to remove your upvote?" }, class: 'upvoted-btn' %>
             <% else %>
-              <%= button_to "Upvote", submission_upvote_path(submission, submission_id: submission.id), method: :post %>
+              <%= button_to "Upvote", submission_upvote_path(submission, submission_id: submission.id), method: :post, class: 'upvote-btn' %>
             <% end %>
           <% end %>
         </td>

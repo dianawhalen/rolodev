@@ -22,12 +22,7 @@ class UpvotesController < ApplicationController
     else
       flash[:alert] = "Unable to upvote submission. Please try again."
     end
-
-    if request.referrer == submissions_url
-      redirect_to submissions_url
-    else
-      redirect_to @submission
-    end
+    redirect_to request.referrer
   end
 
   def update
@@ -43,11 +38,6 @@ class UpvotesController < ApplicationController
     else
       flash[:alert] = "There was a problem removing your upvote. Please try again."
     end
-
-    if request.referrer == submissions_url
-      redirect_to submissions_url
-    else
-      redirect_to @submission
-    end
+    redirect_to request.referrer
   end
 end
