@@ -6,7 +6,6 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_pack_tag 'application', 'data-turbolinks-track': 'reload', href: 'bootstrap/dist/css/bootstrap.min.css' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
     <%= stylesheet_link_tag 'users', media: 'all', 'data-turbolinks-track': 'reload' %>
   </head>
@@ -14,29 +13,20 @@
   <body>
     <header>
       <% if signed_in? %>
-        <%= link_to "New Submission", new_submission_path %>
-        <%= link_to "New Collection", new_collection_path %>
+        <%= link_to "Home", root_path %> ⎮
+        <%= link_to "My Account", user_path(current_user) %> ⎮
+        <%= link_to "New Submission", new_submission_path %> ⎮
+        <%= link_to "New Collection", new_collection_path %> ⎮
         <%= link_to "Sign Out", signout_path, method: "delete" %>
       <% end %>
     </header>
-
-    <nav>
-      <ul>
-        <li><%= link_to "Home", root_path %></li>
-        <% if signed_in? %>
-          <li><%= link_to "All Submissions", submissions_path %></li>
-          <li><%= link_to "My Submissions", user_submissions_path(current_user) %></li>
-          <li><%= link_to "All Collections", collections_path %></li>
-          <li><%= link_to "My Collections", user_collections_path(current_user) %></li>
-        <% end %>
-      </ul>
-    </nav>
 
     <% flash.each do |key, value| %>
       <div class="flash-<%= key %>"><%= value %></div>
     <% end %>
 
     <%= yield %>
+
   </body>
 
 </html>
