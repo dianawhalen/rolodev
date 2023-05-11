@@ -2,17 +2,23 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
 
-.flash-notice {
-  padding: 10px;
-  background-color: #DFF0D8;
-  color: #3C763D;
-}
-
-.flash-alert {
-  padding: 10px;
-  background-color: #F8D7DA;
-  color: #721C24;
-}
+// @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap');
+//
+// body {
+//   font-family: 'Roboto', sans-serif;
+// }
+//
+// .flash-notice {
+//   padding: 10px;
+//   background-color: #DFF0D8;
+//   color: #3C763D;
+// }
+//
+// .flash-alert {
+//   padding: 10px;
+//   background-color: #F8D7DA;
+//   color: #721C24;
+// }
 
 .edit-btn,
 .delete-btn {
@@ -55,13 +61,13 @@
   padding: 10px 20px;
   border: none;
   border-radius: 30px; // Rounded edges
-  background-color: #bb238c; // Background color (use any color you prefer)
-  color: white; // Text color (use any color you prefer)
+  background-color: #bb238c;
+  color: white; // Text color
   cursor: pointer;
   transition: background-color 0.3s ease;
 
   &:hover {
-    background-color: #0056B3; // Background color when hovering (use any color you prefer)
+    background-color: #0056B3; // Background color when hovering
   }
 }
 
@@ -71,13 +77,13 @@
   padding: 10px 20px;
   border: none;
   border-radius: 30px; // Rounded edges
-  background-color: #4f494d; // Background color (use any color you prefer)
-  color: white; // Text color (use any color you prefer)
+  background-color: #4f494d;
+  color: white; // Text color
   cursor: pointer;
   transition: background-color 0.3s ease;
 
   &:hover {
-    background-color: #0056B3; // Background color when hovering (use any color you prefer)
+    background-color: #0056B3; // Background color when hovering
   }
 }
 

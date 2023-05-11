@@ -2,14 +2,43 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
 
-.flash-notice {
-  padding: 10px;
-  background-color: #DFF0D8;
-  color: #3C763D;
+// @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap');
+//
+// body {
+//   font-family: 'Roboto', sans-serif;
+// }
+// 
+// .flash-notice {
+//   padding: 10px;
+//   background-color: #DFF0D8;
+//   color: #3C763D;
+// }
+//
+// .flash-alert {
+//   padding: 10px;
+//   background-color: #F8D7DA;
+//   color: #721C24;
+// }
+
+.tile-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin: -1em;
 }
 
-.flash-alert {
-  padding: 10px;
-  background-color: #F8D7DA;
-  color: #721C24;
+.tile {
+  flex: 0 0 calc(50% - 2em); // Two tiles side by side
+  box-sizing: border-box;
+  margin: 1em;
+  padding: 1em;
+  background-color: #ddd; // Background color of the tile
+  border-radius: 10px; // Rounded corners
+}
+
+.tile-link {
+  text-decoration: none;
+  color: #333; // Text color
+  font-weight: bold;
+  display: block; // Makes the entire tile clickable
 }

@@ -3,17 +3,17 @@
 
 <% if signed_in? %>
   <h1>Welcome <%= link_to current_user.username, user_path(current_user) %>!</h1>
-  <ul>
+  <div class="tile-container">
     <% if signed_in? %>
-      <li><%= link_to "All Users", users_path %></li>
-      <li><%= link_to "My Account", user_path(current_user) %></li>
-      <li><%= link_to "All Submissions", submissions_path %></li>
-      <li><%= link_to "My Submissions", user_submissions_path(current_user) %></li>
-      <li><%= link_to "All Collections", collections_path %></li>
-      <li><%= link_to "My Collections", user_collections_path(current_user) %></li>
+      <div class="tile"><%= link_to "All Users", users_path, class: 'tile-link' %></div>
+      <div class="tile"><%= link_to "My Account", user_path(current_user), class: 'tile-link' %></div>
+      <div class="tile"><%= link_to "All Submissions", submissions_path, class: 'tile-link' %></div>
+      <div class="tile"><%= link_to "My Submissions", user_submissions_path(current_user), class: 'tile-link' %></div>
+      <div class="tile"><%= link_to "All Collections", collections_path, class: 'tile-link' %></div>
+      <div class="tile"><%= link_to "My Collections", user_collections_path(current_user), class: 'tile-link' %></div>
     <% end %>
-  </ul>
-  <% else %>
+  </div>
+<% else %>
   <h1>Welcome!</h1>
     <%= link_to "Sign Up Here", signup_path %> |
     <%= link_to "Sign In Here", signin_path %><br>
