@@ -13,6 +13,7 @@ class User < ApplicationRecord
       user.username = auth.info.nickname
       user.email = auth.info.email
       user.password = SecureRandom.hex(10)
+      user.from_omniauth = true
     end
   end
 

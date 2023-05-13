@@ -26,10 +26,20 @@ class UsersController < ApplicationController
   end
 
   def edit
+    @user = User.find(params[:id])
+    if @user != current_user
+      flash[:alert] = "You are not authorized to perform this action."
+      redirect_back(fallback_location: root_path)
+    end
   end
 
   def update
-    if @user.update(user_params)
+    @user = User.find(params[:id])
+    if @user != current_user
+      flash[:alert] = "You are not authorized to perform this action."
+      redirect_back(fallback_location: root_path)
+    elsif @user.update(user_params)
+      flash[:notice] = "Account updated successfully."
       redirect_to @user
     else
       render :edit
@@ -41,16 +51,22 @@ class UsersController < ApplicationController
     if user == current_user
       session[:user_id] = nil
       user.destroy
-      redirect_to root_path, notice: "Account deleted successfully."
+      flash[:notice] = "Account deleted successfully."
+      redirect_to root_path
     else
-      redirect_to root_path, alert: "You are not authorized to perform this action."
+      flash[:alert] = "You are not authorized to perform this action."
+      redirect_to root_path
     end
   end
 
   private
 
   def user_params
-    params.require(:user).permit(:username, :email, :password)
+    if @user.from_omniauth
+      params.require(:user).permit(:username, :email)
+    else
+      params.require(:user).permit(:username, :email, :password, :password_confirmation)
+    end
   end
 
   def set_user

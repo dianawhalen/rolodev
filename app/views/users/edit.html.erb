@@ -1,2 +1,55 @@
-<h1>Users#edit</h1>
 <p>Find me in app/views/users/edit.html.erb</p>
+
+<h1>Edit Account</h1>
+
+<% if @user.from_omniauth %>
+  <h2>Records created via third party cannot be edited.</h2>
+<% end %>
+
+<%= form_for @user do |f| %>
+  <% if @user.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
+
+      <ul>
+      <% @user.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :username %>
+    <%= f.text_field :username, disabled: @user.from_omniauth %>
+  </div>
+
+  <div class="field">
+    <%= f.label :email %>
+    <%= f.email_field :email, disabled: @user.from_omniauth %>
+  </div>
+
+  <% if @user.from_omniauth %>
+    <div class="field">
+      <%= f.label :password %>
+      <%= f.password_field :password, disabled: true, value: "**********" %>
+    </div>
+  <% else %>
+    <div class="field">
+      <%= f.label :password %>
+      <%= f.password_field :password %>
+    </div>
+
+    <div class="field">
+      <%= f.label :password_confirmation %>
+      <%= f.password_field :password_confirmation %>
+    </div>
+  <% end %>
+
+  <div class="actions">
+    <%= f.submit "Update", disabled: @user.from_omniauth %>
+  </div>
+
+<% end %>
+
+<%= link_to 'Back', :back %>
