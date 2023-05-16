@@ -1,11 +1,27 @@
-<h1>Collections#new</h1>
 <p>Find me in app/views/collections/new.html.erb</p>
 
-<%= form_with model: @collection, url: collections_path do |form| %>
-  <div>
-    <%= form.label :name %>
-    <%= form.text_field :name %>
+<%= form_with(model: @collection, url: collections_path, local: true) do |f| %>
+  <% if @collection.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@collection.errors.count, "error") %> prohibited this collection from being saved:</h2>
+
+      <ul>
+        <% @collection.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %>
+    <%= f.text_field :name %>
   </div>
 
-  <%= form.submit "Create Collection" %>
+  <div class="actions">
+    <%= f.submit "Create Collection" %>
+  </div>
+
 <% end %>
+
+<%= link_to 'Cancel', :back %>

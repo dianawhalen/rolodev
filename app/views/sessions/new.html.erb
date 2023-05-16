@@ -1,18 +1,23 @@
-<h1>Sessions#new</h1>
 <p>Find me in app/views/sessions/new.html.erb</p>
 
 <h1>Sign In</h1>
 
 <%= flash[:message] if flash[:message] %>
 
-<%= form_for :user do |f| %>
+<%= form_with(scope: :user, url: signin_path, local: true) do |f| %>
 
-  <%= f.label :email %>
-  <%= f.email_field :email, required:true %><br>
-  <br>
-  <%= f.label :password %>
-  <%= f.password_field :password, required:true %><br>
-  <br>
-  <%= f.submit "Sign In" %>
+  <div class="field">
+    <%= f.label :email %>
+    <%= f.email_field :email, required:true %><br>
+  </div>
+
+  <div class="field">
+    <%= f.label :password %>
+    <%= f.password_field :password, required:true %><br>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Sign In" %>
+  </div>
 
 <% end %>
