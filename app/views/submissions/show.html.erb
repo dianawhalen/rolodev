@@ -1,4 +1,3 @@
-<h1>Submissions#show</h1>
 <p>Find me in app/views/submissions/show.html.erb</p>
 
 <h2><%= @submission.title %></h2>
@@ -8,21 +7,21 @@
 
 <% if current_user && current_user != @submission.user %>
   <% if current_user.upvoted?(@submission) %>
-    <%= button_to "Upvoted", submission_remove_upvote_path(@submission), method: :delete, data: { confirm: "Are you sure you want to remove your upvote?" }, class: 'upvoted-btn' %>
+    <%= button_to "Upvoted", submission_remove_upvote_path(@submission), method: :delete, data: { confirm: "Are you sure you want to remove your upvote?" }, class: 'button upvoted-btn' %>
   <% else %>
-    <%= button_to "Upvote", submission_upvote_path(@submission, submission_id: @submission.id), method: :post, class: 'upvote-btn' %>
+    <%= button_to "Upvote", submission_upvote_path(@submission, submission_id: @submission.id), method: :post, class: 'button upvote-btn' %>
   <% end %>
 <% end %>
 
 <%= form_for @collection_submission, url: add_to_collection_submission_path(@submission), method: :post, html: { multipart: true } do |form| %>
   <%= form.label :collection_id %>
   <%= form.select :collection_id, options_for_select(@collections.map{ |c| [c.name, c.id] }) %>
-  <%= form.submit 'Add to Collection' %>
+  <%= form.submit 'Add', class: 'button' %>
 <% end %>
 
 <% if current_user && current_user == @submission.user %>
-  <%= button_to "Edit", edit_submission_path(@submission), method: :get %>
-  <%= button_to "Delete", submission_path(@submission), method: :delete, data: { confirm: "Are you sure you want to delete this submission?" } %>
+  <%= button_to "Edit", edit_submission_path(@submission), method: :get, class: 'button edit-btn' %>
+  <%= button_to "Delete", submission_path(@submission), method: :delete, data: { confirm: "Are you sure you want to delete this submission?" }, class: 'button delete-btn' %>
 <% end %>
 
-<%= link_to "Back", submissions_path %>
+<%= link_to "Back", submissions_path, class: 'button back-btn' %>

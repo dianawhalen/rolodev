@@ -1,8 +1,7 @@
-<h1>Collections#index</h1>
 <p>Find me in app/views/collections/index.html.erb</p>
 
 <% if request.path == collections_path %>
-  <h2>Collections are private! You may view your collections <%= link_to "here", user_collections_path(current_user) %>.</h2>
+  <h2>Collections are private! You may view your collections <%= link_to "here", user_collections_path(current_user), class: 'link' %>.</h2>
 <% elsif request.path == user_collections_path(current_user) %>
   <table>
     <thead>
@@ -14,18 +13,21 @@
     <tbody>
       <% @collections.each do |collection| %>
         <tr>
-          <td><%= link_to collection.name, collection_path(collection) %></td>
-          <td
+          <td><%= link_to collection.name, collection_path(collection), class: 'link' %></td>
+          <td>
             <% if current_user && current_user == collection.user %>
-              <%= button_to "Edit", edit_collection_path(collection), method: :get, class: 'btn btn-primary edit-btn' %>
-              <%= button_to "Delete", collection_path(collection), method: :delete, data: { confirm: "Are you sure?" }, class: 'btn btn-danger delete-btn' %>
+              <div class="buttons-container">
+                <%= button_to "Rename", edit_collection_path(collection), method: :get, class: 'button edit-btn' %>
+                <%= button_to "Delete", collection_path(collection), method: :delete, data: { confirm: "Are you sure?" }, class: 'button delete-btn' %>
+              </div>
             <% end %>
           </td>
         </tr>
       <% end %>
     </tbody>
   </table>
+  <br><%= link_to 'Back', :back, class: 'button back-btn' %>
 <% else %>
   <p>You do not have access to view this user's collections.</p>
-  <%= link_to 'Back', '#', onclick: 'window.history.back()', class: 'btn btn-secondary' %>
+  <%= link_to 'Back', '#', onclick: 'window.history.back()', class: 'button back-btn' %>
 <% end %>

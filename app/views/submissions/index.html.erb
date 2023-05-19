@@ -1,4 +1,3 @@
-<h1>Submissions#index</h1>
 <p>Find me in app/views/submissions/index.html.erb</p>
 
 <% if @user == current_user %>
@@ -16,7 +15,7 @@
       <th>URL</th>
       <th>Notes</th>
       <th>Submitted by</th>
-      <th>Total Upvotes</th>
+      <th>Upvotes</th>
       <th>Actions</th>
     </tr>
   </thead>
@@ -31,15 +30,15 @@
         <td>
           <% if current_user && current_user == submission.user %>
             <div class="buttons-container">
-              <%= button_to "Edit", edit_submission_path(submission), method: :get, class: 'edit-btn' %>
-              <%= button_to "Delete", submission_path(submission), method: :delete, data: { confirm: "Are you sure?" }, class: 'delete-btn' %>
+              <%= button_to "Edit", edit_submission_path(submission), method: :get, class: 'button edit-btn' %>
+              <%= button_to "Delete", submission_path(submission), method: :delete, data: { confirm: "Are you sure?" }, class: 'button delete-btn' %>
             </div>
           <% end %>
           <% if current_user && current_user != submission.user %>
             <% if current_user.upvoted?(submission) %>
-              <%= button_to "Upvoted", submission_remove_upvote_path(submission), method: :delete, data: { confirm: "Are you sure you want to remove your upvote?" }, class: 'upvoted-btn' %>
+              <%= button_to "Upvoted", submission_remove_upvote_path(submission), method: :delete, data: { confirm: "Are you sure you want to remove your upvote?" }, class: 'button upvoted-btn' %>
             <% else %>
-              <%= button_to "Upvote", submission_upvote_path(submission, submission_id: submission.id), method: :post, class: 'upvote-btn' %>
+              <%= button_to "Upvote", submission_upvote_path(submission, submission_id: submission.id), method: :post, class: 'button upvote-btn' %>
             <% end %>
           <% end %>
         </td>
@@ -47,3 +46,5 @@
     <% end %>
   </tbody>
 </table>
+
+<br><%= link_to 'Back', :back %>
