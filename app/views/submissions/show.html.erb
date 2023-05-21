@@ -16,14 +16,29 @@
   <% end %>
 </div>
 
-<p> Link: <%= link_to @submission.url, @submission.url %></p>
-<p> Notes: <%= @submission.notes %></p>
-<p> Submitted by <%= link_to @submission.user.username, user_path(@submission.user) %> | Total Upvotes: <%= @submission.upvotes.count %></p>
+<div class="submission-content">
+  <div class="labels-container">
+    <div class="label">Link:</div>
+    <div class="label">Notes:</div>
+    <div class="label">Submitted by:</div>
+    <div class="label">Total Upvotes:</div>
+  </div>
+  <div class="content-container">
+    <div><%= link_to @submission.url, @submission.url %></div>
+    <div><%= @submission.notes %></div>
+    <div><%= link_to @submission.user.username, user_path(@submission.user) %></div>
+    <div><%= @submission.upvotes.count %></div>
+  </div>
+</div>
+
+<br>
 
 <%= form_for @collection_submission, url: add_to_collection_submission_path(@submission), method: :post, html: { multipart: true } do |form| %>
   <%= form.label :collection_id %>
   <%= form.select :collection_id, options_for_select(@collections.map{ |c| [c.name, c.id] }) %>
   <%= form.submit 'Add', class: 'button' %>
 <% end %>
+
+<br>
 
 <br><%= link_to 'Back', '#', onclick: 'window.history.back()', class: 'button back-btn' %>

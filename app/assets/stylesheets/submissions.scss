@@ -1,11 +1,41 @@
-// Place all the styles related to the Users controller here.
+// Place all the styles related to the Upvotes controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
-// 
-// .submission-buttons {
-//   display: flex;
-// }
-//
-// .submission-buttons > * {
-//   margin-right: 5px;
-// }
+
+.submission-content {
+  display: flex;
+  justify-content: space-between;
+  border-radius: 10px;
+  padding: 20px;
+  background-color: #F2F2F2;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.labels-container, .content-container {
+  display: flex;
+  flex-direction: column;
+  background-color: #f7f8fa;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.labels-container {
+  flex-shrink: 0;
+}
+
+.content-container {
+  flex-grow: 1;
+  margin-left: 20px;
+}
+
+.label, .content-container div {
+  margin-bottom: 20px;
+}
+
+.label {
+  font-weight: 600;
+}
+
+.label:last-child, .content-container div:last-child {
+  margin-bottom: 0;
+}
