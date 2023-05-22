@@ -21,11 +21,19 @@
 
 .labels-container {
   flex-shrink: 0;
+  width: 130px;
 }
 
 .content-container {
   flex-grow: 1;
   margin-left: 20px;
+}
+
+.content-container input, .content-container textarea {
+  width: 100%;
+  padding: 5px;
+  border-radius: 10px;
+  box-sizing: border-box;
 }
 
 .label, .content-container div {
@@ -38,4 +46,8 @@
 
 .label:last-child, .content-container div:last-child {
   margin-bottom: 0;
+}
+
+.actions button {
+  background-color: initial;
 }
