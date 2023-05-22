@@ -1,4 +1,4 @@
-// Place all the styles related to the Sessions controller here.
+// Place all the styles related to the Upvotes controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
 
@@ -23,4 +23,40 @@
   color: #333; // Text color
   font-weight: bold;
   display: block; // Makes the entire tile clickable
+}
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 15px 20px;
+  background-color: #007BFF;
+  color: #FFFFFF;
+  border: none;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+  min-width: 160px;
+  text-align: center;
+}
+
+.button:hover {
+  background-color: #0056b3;
+}
+
+.github-button {
+  background-color: #333333;
+  color: #FFFFFF;
+}
+
+.github-button:hover {
+  background-color: #1b1b1b;
+}
+
+.buttons-container {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 20px;
 }
