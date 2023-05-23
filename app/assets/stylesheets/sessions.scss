@@ -1,4 +1,8 @@
-// Place all the styles related to the Upvotes controller here.
+// Place all the styles related to the Sessions controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+
+// Place all the styles related to the Sessions controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
 
@@ -25,38 +29,121 @@
   display: block; // Makes the entire tile clickable
 }
 
-.button {
-  display: inline-flex;
-  align-items: center;
+.tile:hover {
+  background-color: #7458a8;
+}
+
+.home-buttons-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 5px;
+  width: fit-content;
+}
+
+.home-buttons-row {
+  display: flex;
   justify-content: center;
-  padding: 15px 20px;
-  background-color: #007BFF;
-  color: #FFFFFF;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.home-button,
+.home-github-button {
+  padding: 10px 20px;
+  color: #fff;
   border: none;
   border-radius: 5px;
   text-decoration: none;
   font-weight: bold;
-  transition: background-color 0.3s ease;
-  min-width: 160px;
-  text-align: center;
 }
 
-.button:hover {
+.home-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #007BFF;
+  width: 149px;
+}
+
+.home-button:hover {
   background-color: #0056b3;
 }
 
-.github-button {
-  background-color: #333333;
-  color: #FFFFFF;
-}
-
-.github-button:hover {
-  background-color: #1b1b1b;
-}
-
-.buttons-container {
+.home-github-button {
   display: flex;
-  justify-content: flex-start;
   align-items: center;
-  gap: 20px;
+  justify-content: center;
+  background-color: #1b1b1b;
+  width: 390px;
+  border: 3px solid #fff;
+  transition: background-color 0.3s ease;
+}
+
+.home-github-button:hover {
+  background-color: #333333;
+}
+
+.signin-content {
+  display: flex;
+  justify-content: space-between;
+  border-radius: 10px;
+  padding: 20px;
+  background-color: #F2F2F2;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.signin-button-container {
+  display: flex;
+  justify-content: center;
+  padding-top: 20px;
+}
+
+.labels-container, .content-container {
+  display: flex;
+  flex-direction: column;
+  background-color: #f7f8fa;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.labels-container {
+  flex-shrink: 0;
+  width: 130px;
+}
+
+.content-container {
+  flex-grow: 1;
+  margin-left: 20px;
+}
+
+.content-container input {
+  width: 100%;
+  padding: 5px;
+  border-radius: 10px;
+  box-sizing: border-box;
+}
+
+.label, .content-container div {
+  margin-bottom: 20px;
+}
+
+.label {
+  font-weight: 600;
+}
+
+.label:last-child, .content-container div:last-child {
+  margin-bottom: 0;
+}
+
+.actions button {
+  background-color: initial;
+}
+
+.actions {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f7f8fa;
+  border-radius: 10px;
 }

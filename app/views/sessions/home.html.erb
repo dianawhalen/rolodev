@@ -14,9 +14,15 @@
   </div>
 <% else %>
   <h1>Welcome!</h1>
-  <div class="buttons-container">
-    <%= link_to "Sign Up Here", signup_path, class: 'button' %>
-    <%= link_to "Sign In Here", signin_path, class: 'button' %>
-    <%= link_to "Login with GitHub", '/auth/github', method: :post, class: 'button github-button' %>
+  <div class="home-buttons-container">
+    <div class="home-buttons-row">
+      <%= link_to "Sign Up Here", signup_path, class: 'home-button' %>
+      <%= link_to "Sign In Here", signin_path, class: 'home-button' %>
+    </div>
+    <div class="home-buttons-row">
+      <%= form_tag('/auth/github', method: 'post') do %>
+        <button type="submit" class="home-button home-github-button">Login with GitHub</button>
+      <% end %>
+    </div>
   </div>
 <% end %>
