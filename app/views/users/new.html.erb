@@ -15,23 +15,35 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :username %>
-    <%= f.text_field :username, required:true %><br>
+  <div class="signin-content">
+    <div class="labels-container">
+      <div class="label">
+        <%= f.label :username %>:
+      </div>
+      <div class="label">
+        <%= f.label :email %>:
+      </div>
+      <div class="label">
+        <%= f.label :password %>:
+      </div>
+    </div>
+
+    <div class="content-container">
+      <div>
+        <%= f.text_field :username, required:true %>
+      </div>
+      <div>
+        <%= f.email_field :email, required:true %>
+      </div>
+      <div>
+        <%= f.password_field :password, required:true %>
+      </div>
+    </div>
   </div>
 
-  <div class="field">
-    <%= f.label :email %>
-    <%= f.email_field :email, required:true %><br>
+  <div class="signin-button-container">
+    <div class="actions">
+      <%= f.submit "Submit", class: 'home-button' %>
+    </div>
   </div>
-
-  <div class="field">
-    <%= f.label :password %>
-    <%= f.password_field :password, required:true %><br>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Submit" %>
-  </div>
-
 <% end %>
