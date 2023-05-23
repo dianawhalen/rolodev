@@ -1,27 +1,35 @@
 <p>Find me in app/views/collections/new.html.erb</p>
 
-<%= form_with(model: @collection, url: collections_path, local: true) do |f| %>
-  <% if @collection.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@collection.errors.count, "error") %> prohibited this collection from being saved:</h2>
+<% if @collection.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@collection.errors.count, "error") %> prohibited this collection from being saved:</h2>
 
-      <ul>
-        <% @collection.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :name %>
-    <%= f.text_field :name %>
+    <ul>
+      <% @collection.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
   </div>
-
-  <div class="actions">
-    <%= f.submit "Create Collection" %>
-  </div>
-
 <% end %>
 
-<%= link_to 'Cancel', :back %>
+<%= form_with(model: @collection, url: collections_path, local: true) do |f| %>
+  <div class="title-and-buttons">
+    <h2>New Collection</h2>
+    <div class="buttons-container">
+      <%= f.submit "Create", class: 'button' %>
+    </div>
+  </div>
+
+  <div class="submission-content">
+    <div class="labels-container">
+      <div class="label"><%= f.label :name %>:</div>
+    </div>
+    <div class="content-container">
+      <div><%= f.text_field :name, autofocus: true %></div>
+    </div>
+  </div>
+<% end %>
+
+<br>
+
+<%= link_to 'Cancel', :back, class: 'button back-btn' %>
