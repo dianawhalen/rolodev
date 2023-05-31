@@ -1,4 +1,4 @@
-// Place all the styles related to the Upvotes controller here.
+// Place all the styles related to the Submissions controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
 
@@ -9,6 +9,7 @@
   padding: 20px;
   background-color: #F2F2F2;
   box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
 }
 
 .labels-container, .content-container {
@@ -29,7 +30,7 @@
   margin-left: 20px;
 }
 
-.content-container input, .content-container textarea {
+.content-container input, .content-container textarea, .content-container select {
   width: 100%;
   padding: 5px;
   border-radius: 10px;
@@ -50,4 +51,57 @@
 
 .actions button {
   background-color: initial;
+}
+
+.form-content {
+  display: flex;
+  justify-content: space-between;
+  flex-grow: 1;
+  width: 100%;
+}
+
+.new_collection_submission, .edit_collection_submission {
+  display: flex;
+  width: 100%;
+}
+
+.collection-selector-container {
+  flex-grow: 1;
+  margin-right: 20px;
+}
+
+.collection-submission-form {
+  position: relative;
+  display: flex;
+  align-items: center;
+  border-radius: 10px;
+  padding: 20px;
+  background-color: #F2F2F2;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+  margin-top: 20px;
+}
+
+.collection-submission-form select {
+  display: flex;
+  flex-grow: 1;
+  margin-right: 15px;
+  border-radius: 10px;
+  height: 30px;
+  padding: 5px;
+  width: 100%;
+  box-sizing: border-box
+}
+
+.button.add-to-collection-btn {
+  padding: 5px 10px;
+  flex-shrink: 0;
+  flex-basis: 75px;
+  height: 30px;
+  text-align: center;
+  border-radius: 30px;
+}
+
+.button-container {
+  display: flex;
+  justify-content: space-between;
 }

@@ -31,12 +31,15 @@
   </div>
 </div>
 
-<br>
-
-<%= form_for @collection_submission, url: add_to_collection_submission_path(@submission), method: :post, html: { multipart: true } do |form| %>
-  <%= form.label :collection_id %>
-  <%= form.select :collection_id, options_for_select(@collections.map{ |c| [c.name, c.id] }) %>
-  <%= form.submit 'Add', class: 'button' %>
+<% if current_user %>
+  <div class="collection-submission-form">
+    <%= form_for @collection_submission, url: add_to_collection_submission_path(@submission), method: :post, html: { multipart: true } do |f| %>
+      <div class="form-content">
+        <%= f.select :collection_id, options_for_select(@collections.map{ |c| [c.name, c.id] }), include_blank: 'Select Collection', class: 'collection-selector' %>
+        <%= f.submit 'Add', class: 'button add-to-collection-btn' %>
+      </div>
+    <% end %>
+  </div>
 <% end %>
 
 <br>
