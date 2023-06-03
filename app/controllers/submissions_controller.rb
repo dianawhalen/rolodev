@@ -75,6 +75,10 @@ class SubmissionsController < ApplicationController
     end
   end
 
+  def top_submissions
+    @submissions = Submission.most_upvotes
+  end
+
   private
 
   def collection_submission_params

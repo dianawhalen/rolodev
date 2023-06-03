@@ -19,6 +19,8 @@ Rails.application.routes.draw do
   end
 
   resources :submissions do
+    get 'top_submissions', on: :collection
+
     post 'upvote', to: 'upvotes#create', as: 'upvote'
     delete 'upvote', to: 'upvotes#destroy', as: 'remove_upvote'
     resources :upvotes

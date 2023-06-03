@@ -1,0 +1,26 @@
+<p>Find me in app/views/submissions/top_submissions.html.erb</p>
+
+<h2>Top Submissions</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>URL</th>
+      <th>Upvotes</th>
+      <th>Submitted By</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @submissions.each do |submission| %>
+      <tr>
+        <td><%= link_to submission.title, submission_path(submission) %></td>
+        <td><%= link_to submission.url, submission.url %></td>
+        <td><%= submission.upvotes.count %></td>
+        <td><%= link_to submission.user.username, user_path(submission.user) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br><%= link_to 'Back', '#', onclick: 'window.history.back()', class: 'button back-btn' %>

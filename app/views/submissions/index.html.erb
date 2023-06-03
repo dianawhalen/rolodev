@@ -5,7 +5,7 @@
 <% elsif @user.present? %>
   <h2><%= @user.username %>'s Submissions</h2>
 <% else %>
-  <h1>All Submissions</h1>
+  <h1>All Submissions (<%= link_to 'Top 5', top_submissions_submissions_path %>)</h1>
 <% end %>
 
 <table>

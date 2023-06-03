@@ -11,4 +11,12 @@ class Submission < ApplicationRecord
   def upvoted_by?(user)
     upvoters.exists?(user.id)
   end
+
+  scope :most_upvotes, -> {
+    select('submissions.*, count(upvotes.id) AS upvotes_count')
+    .joins(:upvotes)
+    .group('submissions.id')
+    .order('upvotes_count DESC')
+    .limit(5)
+  }
 end
