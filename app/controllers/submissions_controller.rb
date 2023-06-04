@@ -15,30 +15,21 @@ class SubmissionsController < ApplicationController
     end
   end
 
-  # def new
-  #   @submission = Submission.new
-  # end
-
   def new
-    if params[:user_id] && @user = User.find_by_id(params[:user_id])
-      @submission = @user.submissions.build
-    else
-      @submission = Submission.new
-    end
-    @submission.build_collection
+    @submission = Submission.new
   end
 
-  # def create
-  #   @submission = Submission.new(submission_params)
-  #   if @submission.save
-  #     redirect_to submissions_path
+  # def new
+  #   if params[:user_id] && @user = User.find_by_id(params[:user_id])
+  #     @submission = @user.submissions.build
   #   else
-  #     render :new
+  #     @submission = Submission.new
   #   end
+  #   @submission.build_collection
   # end
 
   def create
-    @submission = current_user.submissions.build(submission_params)
+    @submission = Submission.new(submission_params)
     if @submission.save
       redirect_to submissions_path
     else
@@ -46,9 +37,44 @@ class SubmissionsController < ApplicationController
     end
   end
 
+  # def create
+  #   @submission = current_user.submissions.build(submission_params)
+  #   if @submission.save
+  #     redirect_to submissions_path
+  #   else
+  #     render :new
+  #   end
+  # end
+
+  # def show
+  #   @submission = Submission.find_by_id(params[:id])
+  #   redirect_to submissions_path if !@submission
+  # end
+
+  # def show
+  #   if params[:user_id]
+  #     @user = User.find_by(id: params[:user_id])
+  #     @submission = @user.submissions.find_by(id: params[:id])
+  #     if @submission.nil?
+  #       flash[:alert] = "Submission not found"
+  #       redirect_to user_submissions_path(@user)
+  #     end
+  #   else
+  #     @submission = Submission.find(params[:id])
+  #   end
+  # end
+
   def show
-    @submission = Submission.find_by_id(params[:id])
-    redirect_to submissions_path if !@submission
+    if params[:user_id]
+      @user = User.find_by(id: params[:user_id])
+      @submission = @user.submissions.find_by(id: params[:id])
+      if @submission.nil?
+        flash[:alert] = "Submission not found"
+        redirect_to user_submissions_path(@user)
+      end
+    else
+      @submission = Submission.find(params[:id])
+    end
   end
 
   def edit

@@ -1,15 +1,6 @@
-<h1> <%= @submission.title %></h1>
-<h3>by: <%= link_to @submission.user.username, user_path(@submission.user) %></h3>
 
-<p>
-  <strong>Url:</strong>
-  <%= link_to(@submission.url, @submission.url) %>
-</p>
 
-<p>
-  <strong>Notes:</strong>
-  <%= @submission.notes %>
-</p>
+<h1><%= link_to @submission.title, submission_path(@submission) %></h1>
+<h3> by <%= display_user(@submission) %></h3>
 
-<%= link_to 'Edit', edit_submission_path(@submission) %> |
-<%= link_to 'Back', submissions_path %>
+<%= link_to "All Submissions", submissions_path %>

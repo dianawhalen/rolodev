@@ -14,13 +14,18 @@ match '/auth/:provider/callback', to: 'sessions#create', via: [:get, :post]
 
   delete '/signout' => 'sessions#destroy'
 
-  resources :submissions do
-    resources :upvotes
-  end
-  resources :upvotes
+  # resources :users do
+  #   resources :submissions, shallow: true
+  # end
+
   resources :users do
-    resources :submissions, shallow: true
+    resources :submissions, only: [:index, :show]
   end
+
+  resources :submissions
+
+  resources :upvotes
+
   resources :collections
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
