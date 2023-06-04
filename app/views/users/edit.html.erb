@@ -19,37 +19,42 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :username %>
-    <%= f.text_field :username, disabled: @user.from_omniauth %>
+  <div class="signin-content">
+    <div class="labels-container">
+      <%= f.label :username, class: "label" %>
+      <%= f.label :email, class: "label" %>
+      <% unless @user.from_omniauth %>
+        <%= f.label :password, class: "label" %>
+        <%= f.label :password_confirmation, class: "label" %>
+      <% end %>
+    </div>
+
+    <div class="content-container">
+      <div>
+        <%= f.text_field :username, disabled: @user.from_omniauth %>
+      </div>
+      <div>
+        <%= f.email_field :email, disabled: @user.from_omniauth %>
+      </div>
+      <% if @user.from_omniauth %>
+        <div>
+          <%= f.password_field :password, disabled: true, value: "**********" %>
+        </div>
+      <% else %>
+        <div>
+          <%= f.password_field :password %>
+        </div>
+        <div>
+          <%= f.password_field :password_confirmation %>
+        </div>
+      <% end %>
+    </div>
   </div>
 
-  <div class="field">
-    <%= f.label :email %>
-    <%= f.email_field :email, disabled: @user.from_omniauth %>
-  </div>
-
-  <% if @user.from_omniauth %>
-    <div class="field">
-      <%= f.label :password %>
-      <%= f.password_field :password, disabled: true, value: "**********" %>
-    </div>
-  <% else %>
-    <div class="field">
-      <%= f.label :password %>
-      <%= f.password_field :password %>
-    </div>
-
-    <div class="field">
-      <%= f.label :password_confirmation %>
-      <%= f.password_field :password_confirmation %>
-    </div>
-  <% end %>
-
-  <div class="actions">
-    <%= f.submit "Update", disabled: @user.from_omniauth %>
+  <div class="signin-button-container">
+    <%= f.submit "Update", disabled: @user.from_omniauth, class: 'button' %>
   </div>
 
 <% end %>
 
-<%= link_to 'Back', :back %>
+<%= link_to 'Cancel', :back %>

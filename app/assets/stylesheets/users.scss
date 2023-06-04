@@ -42,12 +42,13 @@
   box-sizing: border-box;
 }
 
-.label, .content-container div {
+.content-container div {
   margin-bottom: 20px;
 }
 
 .label {
   font-weight: 600;
+  margin-bottom: 30px;
 }
 
 .label:last-child, .content-container div:last-child {
