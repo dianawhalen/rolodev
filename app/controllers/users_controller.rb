@@ -62,7 +62,7 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    if @user.from_omniauth
+    if params[:user][:from_omniauth] == "true"
       params.require(:user).permit(:username, :email)
     else
       params.require(:user).permit(:username, :email, :password, :password_confirmation)

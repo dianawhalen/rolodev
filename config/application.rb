@@ -9,7 +9,10 @@ Bundler.require(*Rails.groups)
 module Rolodev
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
-    config.load_defaults 6.0
+    config.load_defaults 7.0
+
+    # Here is where you set the legacy_connection_handling flag to false
+    config.active_record.legacy_connection_handling = false
 
     # Configuration for the application, engines, and railties goes here.
     #
